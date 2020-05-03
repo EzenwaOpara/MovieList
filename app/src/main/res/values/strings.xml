@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Movie List</string>
+    <string name="premiere">Premiere:</string>
+    <string name="language">Language:</string>
+    <string name="rating">Rating:</string>
+    <string name="overview">Overview:</string>
+    <string name="movie_poster">Movie poster</string>
 </resources>

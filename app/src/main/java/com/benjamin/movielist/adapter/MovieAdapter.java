@@ -13,41 +13,40 @@ import android.widget.TextView;
 
 import com.benjamin.movielist.R;
 import com.benjamin.movielist.model.MovieResults;
+import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
-
 public class MovieAdapter extends ArrayAdapter<MovieResults.ResultsBean> {
-    private int mImageResourceId;
 
     public MovieAdapter(@NonNull Context context, int resource, @NonNull List<MovieResults.ResultsBean> movies) {
         super(context, 0, movies);
     }
-
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         MovieResults.ResultsBean currentMovie = getItem(position);
 
-
         View listView = convertView;
         if (listView == null){
             listView = LayoutInflater.from(getContext()).inflate(R.layout.movie_list, parent, false);
         }
         TextView titleTV = listView.findViewById(R.id.movie_title);
-//        titleTV.setText(currentMovie.getMovieTitle());
+        TextView dateTV = listView.findViewById(R.id.release_date);
+        TextView langTV = listView.findViewById(R.id.original_language);
+        TextView ratingTV = listView.findViewById(R.id.rating);
+        TextView overviewTV = listView.findViewById(R.id.overview);
+        ImageView imageView = listView.findViewById(R.id.movie_image);
 
-        TextView premiereTV = listView.findViewById(R.id.release_date);
-//        premiereTV.setText(currentMovie.getPremiere());
+        titleTV.setText(currentMovie.getTitle());
+        dateTV.setText(currentMovie.getRelease_date());
+        langTV.setText(currentMovie.getOriginal_language());
+        ratingTV.setText(Double.toString(currentMovie.getVote_average()));
+        overviewTV.setText(currentMovie.getOverview());
 
-        TextView directorTV = listView.findViewById(R.id.original_language);
-//        directorTV.setText(currentMovie.getDirector());
-
-//        titleTextView.setText(movie.getTitle());
-//        dateTextView.setText(movie.getRelease_date());
-//        languageTextView.setText(movie.getOriginal_language());
+        String url = "https://image.tmdb.org/t/p/original" + currentMovie.getPoster_path();
+        Picasso.with(getContext()).load(url).into(imageView);
 
         return listView;
     }

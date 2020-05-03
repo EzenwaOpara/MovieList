@@ -3,7 +3,6 @@ package com.benjamin.movielist.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.benjamin.movielist.adapter.MovieAdapter;
 import com.benjamin.movielist.model.APIInterface;
@@ -20,24 +19,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static String BASE_URL = "https://api.themoviedb.org/";
-    public static String API_KEY = "bf7e7de434146c6c426be506d98ac9a2";
+    public static String BASE_URL = "https://api.themoviedb.org";
+    public static String API_KEY = "my_api_key";
     public static String LANGUAGE = "en-US";
     public static String CATEGORY = "popular";
     public static int PAGE = 1;
-    TextView titleTextView;
-    TextView dateTextView;
-    TextView languageTextView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        titleTextView = findViewById(R.id.movie_title);
-        dateTextView = findViewById(R.id.release_date);
-        languageTextView = findViewById(R.id.original_language);
 
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -58,11 +49,6 @@ public class MainActivity extends AppCompatActivity {
                 MovieAdapter adapter = new MovieAdapter(MainActivity.this, 0, listOfMovies);
                 ListView listView = findViewById(R.id.list_view);
                 listView.setAdapter(adapter);
-
-//                for (int i = 0; i < listOfMovies.size(); i++){
-//                    MovieResults.ResultsBean movie = listOfMovies.get(i);
-//
-//                }
             }
 
             @Override
